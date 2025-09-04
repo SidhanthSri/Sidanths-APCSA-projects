@@ -25,7 +25,7 @@ public class Roomba implements Directions {
 
 		// A new Robot should be constructed and assigned to the global (instance) variable named roomba that is declared above.
         // Make sure it starts at startX and startY location.
-
+		roomba = new Robot(10,7,East,90);
 		World.readWorld(worldName);
 		World.setVisible(true);
 
