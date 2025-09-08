@@ -25,6 +25,9 @@ public class Diamond implements Directions{
         // starting the letter R
         rob.putBeeper();
         rob.move();
+        rob.turnleft();
+        rob.putbeeper():
+        
 
 
 
