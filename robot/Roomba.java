@@ -8,15 +8,17 @@ public class Roomba implements Directions {
 	public static void main(String[] args) {
 		// LEAVE THIS ALONE!!!!!!
 		String worldName = "robot/basicRoom.wld";
-
+		World.setDelay(5);
 		Roomba cleaner = new Roomba();
 		int totalBeepers = cleaner.cleanRoom(worldName, 7, 6);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
+		
 
 	}
 
 	// declared here so it is visible in all the methods!
-	private Robot roomba;
+	private Robot roomba = new Robot(7,6,East,90);
+;
 
 	// You will need to add many variables!!
 
@@ -25,19 +27,38 @@ public class Roomba implements Directions {
 
 		// A new Robot should be constructed and assigned to the global (instance) variable named roomba that is declared above.
         // Make sure it starts at startX and startY location.
-		Robot roomba = new Robot(6,7,East,0);
 		int totalBeepers = 0;
 		World.readWorld(worldName);
 		World.setVisible(true);
-		
+		boolean facingEast;
+		boolean facingWest;
+		boolean roomClean = false;
+	while(roomClean == false){
 		while (roomba.frontIsClear()){
 			while (roomba.nextToABeeper()){
 				roomba.pickBeeper();
 				totalBeepers++;
 			}
 			roomba.move();
-
+		} if (roomba.frontIsClear() == false){
+			if (roomba.facingEast()){
+				roomba.turnLeft();
+				roomba.move();
+				roomba.turnLeft();
+			}
+		} if (roomba.frontIsClear() == false){
+			if(roomba.facingWest()){
+				roomba.turnLeft();
+				roomba.turnLeft();
+				roomba.turnLeft();
+				roomba.move();
+				roomba.turnLeft();
+				roomba.turnLeft();
+				roomba.turnLeft();
+			}
 		}
+	}
+
 				
 
 		/** This section will have all the logic that takes the Robot to every location
