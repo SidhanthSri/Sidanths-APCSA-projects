@@ -25,10 +25,20 @@ public class Roomba implements Directions {
 
 		// A new Robot should be constructed and assigned to the global (instance) variable named roomba that is declared above.
         // Make sure it starts at startX and startY location.
-		roomba = new Robot(10,7,East,90);
+		Robot roomba = new Robot(6,7,East,0);
+		int totalBeepers = 0;
 		World.readWorld(worldName);
 		World.setVisible(true);
+		
+		while (roomba.frontIsClear()){
+			while (roomba.nextToABeeper()){
+				roomba.pickBeeper();
+				totalBeepers++;
+			}
+			roomba.move();
 
+		}
+				
 
 		/** This section will have all the logic that takes the Robot to every location
 		 * and cleans up all piles of beepers. Think about ways you can break this
@@ -40,7 +50,7 @@ public class Roomba implements Directions {
 		roomba.move();
 
 
-		int totalBeepers = 0; // Need to move this somewhere else.
+		//int totalBeepers = 0; // Need to move this somewhere else.
         // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
 	}
